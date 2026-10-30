@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="The personal portfolio of Rohith Kishan P — student, developer, and lifelong learner.">
+  <title>Rohith Kishan P | Developer Portfolio</title>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080d18;
+      --surface: #101827;
+      --surface-soft: #151f31;
+      --text: #edf3ff;
+      --muted: #a7b4ca;
+      --accent: #70a5ff;
+      --accent-strong: #4d86f7;
+      --border: rgba(174, 196, 230, 0.16);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+      --radius: 20px;
+      --content-width: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(77, 134, 247, 0.16), transparent 38rem),
+        radial-gradient(ellipse at 90% 35%, rgba(90, 79, 210, 0.10), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--accent); }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid #b7d0ff;
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
+    .container { width: min(var(--content-width), calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 13, 24, 0.88);
+      backdrop-filter: blur(16px);
+    }
+    .nav-wrap {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.05rem;
+      white-space: nowrap;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding: 9px 12px;
+      border-radius: 10px;
+      transition: color .2s ease, background .2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible {
+      color: var(--text);
+      background: var(--surface-soft);
+    }
+
+    main { padding: 42px 0 72px; }
+    .panel {
+      background: linear-gradient(145deg, rgba(19, 29, 46, 0.96), rgba(13, 21, 35, 0.96));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 5vw, 52px);
+      margin-bottom: 24px;
+    }
+    .hero {
+      min-height: 390px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(180px, 0.6fr);
+      align-items: center;
+      gap: 36px;
+      overflow: hidden;
+      position: relative;
+    }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-weight: 800;
+      font-size: .78rem;
+      margin: 0 0 12px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4.6rem);
+      line-height: 1.04;
+      letter-spacing: -.065em;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .subtitle { color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); margin-bottom: 18px; }
+    .intro { color: #c5d0e2; max-width: 620px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 750;
+      border: 1px solid transparent;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent-strong); color: #fff; }
+    .btn-primary:hover { background: #6598ff; }
+    .btn-secondary { color: var(--text); border-color: var(--border); background: rgba(255,255,255,.025); }
+    .btn-secondary:hover { border-color: rgba(112,165,255,.65); }
+    .profile-frame {
+      width: min(100%, 240px);
+      aspect-ratio: 1;
+      margin-inline: auto;
+      border-radius: 50%;
+      padding: 7px;
+      background: linear-gradient(145deg, var(--accent), #7767e8);
+      box-shadow: 0 0 0 14px rgba(112,165,255,.06), 0 20px 60px rgba(50, 95, 190, .2);
+    }
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid var(--surface);
+      background: var(--surface-soft);
+    }
+    .section-heading { margin-bottom: 22px; }
+    .section-heading h2 {
+      font-size: clamp(1.6rem, 4vw, 2.15rem);
+      letter-spacing: -.04em;
+      margin-bottom: 6px;
+    }
+    .section-heading p { color: var(--muted); margin-bottom: 0; }
+    .about-copy { max-width: 800px; color: #c5d0e2; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .project-card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+      min-height: 225px;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(112,165,255,.12);
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin-bottom: 18px;
+    }
+    .project-card h3 { margin-bottom: 8px; font-size: 1.08rem; }
+    .project-card p { color: var(--muted); font-size: .94rem; margin-bottom: 18px; }
+    .project-link { margin-top: auto; font-weight: 700; text-decoration: none; }
+    .project-link:hover { text-decoration: underline; }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+    .skills-list li {
+      border: 1px solid rgba(112,165,255,.24);
+      background: rgba(112,165,255,.08);
+      color: #dce8ff;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: .94rem;
+      font-weight: 650;
+    }
+    .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .contact-item:hover { border-color: rgba(112,165,255,.55); }
+    .contact-item i { color: var(--accent); font-size: 1.2rem; width: 24px; text-align: center; }
+    .contact-item small { display: block; color: var(--muted); }
+    .contact-item span { overflow-wrap: anywhere; }
+    .readme-list { padding-left: 22px; color: #c5d0e2; }
+    .readme-list li { margin: 6px 0; }
+    .note {
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      color: var(--muted);
+      background: rgba(112,165,255,.06);
+      border-radius: 0 10px 10px 0;
+      font-size: .92rem;
+    }
+    footer { text-align: center; color: var(--muted); padding: 10px 0 28px; font-size: .9rem; }
+    footer a { text-decoration: none; }
+    .back-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--accent-strong);
+      color: white;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 760px) {
+      .nav-wrap { align-items: flex-start; flex-direction: column; gap: 6px; padding: 14px 0; }
+      .nav-links { gap: 2px; }
+      .nav-links a { padding: 8px 9px; font-size: .86rem; }
+      main { padding-top: 24px; }
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 28px; }
+      .hero-actions { justify-content: center; }
+      .profile-frame { grid-row: 1; width: 160px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card { min-height: auto; }
+    }
+    @media (max-width: 520px) {
+      .container { width: min(100% - 24px, var(--content-width)); }
+      .panel { padding: 24px 19px; border-radius: 16px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { width: 100%; }
+      .nav-links a { flex: 1 0 auto; text-align: center; }
+      .back-top { right: 12px; bottom: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Rohith Kishan P home">RK<span>.</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="#readme">README</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Welcome to my portfolio</p>
+        <h1 id="hero-title">Hi, I'm <span>Rohith Kishan P</span></h1>
+        <p class="subtitle">Student · Developer · Lifelong Learner</p>
+        <p class="intro">I'm passionate about technology, programming, and continuous learning. I enjoy building projects, strengthening my skills, and exploring new ways to solve problems with code.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-code" aria-hidden="true"></i> Explore Projects</a>
+          <a class="btn btn-secondary" href="#contact"><i class="fa-regular fa-paper-plane" aria-hidden="true"></i> Get in Touch</a>
+        </div>
+      </div>
+      <div class="profile-frame">
+        <img src="profile.jpg" alt="Portrait of Rohith Kishan P" width="240" height="240"
+             onerror="this.style.display='none'; this.parentElement.innerHTML='<div role=&quot;img&quot; aria-label=&quot;Profile photo placeholder&quot; style=&quot;width:100%;height:100%;display:grid;place-items:center;border-radius:50%;background:#151f31;color:#70a5ff;font-size:4rem;font-weight:800&quot;>RK</div>';">
+      </div>
+    </section>
+
+    <section class="panel" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <p class="eyebrow">A little about me</p>
+        <h2 id="about-title">About Me</h2>
+      </div>
+      <p class="about-copy">Hello! I'm Rohith Kishan P, a student and aspiring developer with an interest in technology and programming. I'm focused on learning by doing, improving my problem-solving skills, and creating useful projects as I grow as a developer.</p>
+      <p class="about-copy">This portfolio is a place to share my work, highlight the tools I'm learning, and make it easy for people to connect with me.</p>
+    </section>
+
+    <section class="panel" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <p class="eyebrow">What I've been building</p>
+        <h2 id="projects-title">Featured Projects</h2>
+        <p>Replace these sample cards with your real projects and links.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
+          <h3>Personal Portfolio</h3>
+          <p>A responsive website to introduce myself, showcase my skills, and share ways to contact me.</p>
+          <a class="project-link" href="#readme">View project details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </article>
+        <article class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+          <h3>Web Development Project</h3>
+          <p>Add a short description of a website or web app you've built, including the problem it solves.</p>
+          <a class="project-link" href="#contact">Ask me about this project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </article>
+        <article class="project-card">
+          <div class="project-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></div>
+          <h3>Python Project</h3>
+          <p>Add a Python project summary here, including its main features and what you learned while building it.</p>
+          <a class="project-link" href="#contact">Ask me about this project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="skills" aria-labelledby="skills-title">
+      <div class="section-heading">
+        <p class="eyebrow">Tools I work with</p>
+        <h2 id="skills-title">Skills</h2>
+        <p>Technologies I'm learning and practicing.</p>
+      </div>
+      <ul class="skills-list" aria-label="Technical skills">
+        <li><i class="fa-brands fa-html5" aria-hidden="true"></i> HTML5</li>
+        <li><i class="fa-brands fa-css3-alt" aria-hidden="true"></i> CSS3</li>
+        <li><i class="fa-brands fa-js" aria-hidden="true"></i> JavaScript</li>
+        <li><i class="fa-brands fa-python" aria-hidden="true"></i> Python</li>
+      </ul>
+    </section>
+
+    <section class="panel" id="contact" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <p class="eyebrow">Let's connect</p>
+        <h2 id="contact-title">Contact</h2>
+        <p>Have a question, an idea, or an opportunity? Feel free to reach out.</p>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:rohithkishanp@gmail.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <span><small>Email</small>rohithkishanp@gmail.com</span>
+        </a>
+        <!-- Replace YOUR_GITHUB_USERNAME with your actual GitHub username. -->
+        <a class="contact-item" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span><small>GitHub</small>View my repositories</span>
+        </a>
+        <!-- Add a LinkedIn link here when you have one. -->
+        <a class="contact-item" href="mailto:rohithkishanp@gmail.com?subject=Portfolio%20enquiry">
+          <i class="fa-regular fa-paper-plane" aria-hidden="true"></i>
+          <span><small>For enquiries</small>Send me a message</span>
+        </a>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <span><small>Availability</small>Open to learning and collaboration</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="readme" aria-labelledby="readme-title">
+      <div class="section-heading">
+        <p class="eyebrow">Project documentation</p>
+        <h2 id="readme-title">README</h2>
+        <p>Personal portfolio website built with HTML and CSS.</p>
+      </div>
+      <h3>Features</h3>
+      <ul class="readme-list">
+        <li>Modern dark theme with a responsive layout.</li>
+        <li>Navigation links to About, Projects, Skills, Contact, and README.</li>
+        <li>Hero section with clear calls to action.</li>
+        <li>Project cards and skill badges.</li>
+        <li>Clickable email and social links.</li>
+        <li>Keyboard focus states, semantic sections, and reduced-motion support.</li>
+      </ul>
+      <h3>Built With</h3>
+      <ul class="readme-list">
+        <li>HTML5 for structure and semantic content.</li>
+        <li>CSS3 for layout, responsive styling, and visual design.</li>
+        <li>Font Awesome for icons.</li>
+      </ul>
+      <h3>How to Customize</h3>
+      <ol class="readme-list">
+        <li>Place your profile image in the same folder and name it <code>profile.jpg</code>.</li>
+        <li>Replace the sample project descriptions with your actual projects, GitHub repositories, and live demos.</li>
+        <li>Replace <code>YOUR_GITHUB_USERNAME</code> in the GitHub link with your username.</li>
+        <li>Add any additional skills, a LinkedIn profile, or a résumé link you want to share.</li>
+      </ol>
+      <p class="note"><strong>Before publishing:</strong> check every link and replace the sample project content and GitHub placeholder with your real details.</p>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>© <span id="year">2026</span> Rohith Kishan P. Built with HTML &amp; CSS.</p>
+  </footer>
+  <a class="back-top" href="#top" aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
